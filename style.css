@@ -8,6 +8,10 @@ body {
   background-color: #f4f4f4;
 }
 
+canvas {
+  image-rendering: crisp-edges;
+}
+
 .container {
   display: flex;
   flex-flow: column nowrap;
