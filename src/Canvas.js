@@ -29,20 +29,27 @@ export default class Canvas {
     resize() {
         const { element } = this;
         const { innerWidth, innerHeight } = window;
-        const { width, height } = this;
-
-        const scale = Math.min(innerWidth / width, innerHeight / height);
-
-        const newWidth = width * scale * 0.9;
-        const newHeight = height * scale;
-
+    
+        // Calculate scale based on the aspect ratio
+        const aspectRatio = this.width / this.height;
+        let newWidth = innerWidth * 0.9; // 90% of window width
+        let newHeight = newWidth / aspectRatio;
+    
+        // Ensure it fits within the window height
+        if (newHeight > innerHeight * 0.9) {
+            newHeight = innerHeight * 0.9; // 90% of window height
+            newWidth = newHeight * aspectRatio;
+        }
+    
         element.style.width = `${newWidth}px`;
         element.style.height = `${newHeight}px`;
         element.width = newWidth;
         element.height = newHeight;
-
+    
         this.width = newWidth;
         this.height = newHeight;
+    
+        console.log('Resized canvas to:', newWidth, newHeight);
     }
 
     drawImage(image, x, y, width = 0, height = 0) {

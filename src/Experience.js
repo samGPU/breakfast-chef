@@ -8,13 +8,18 @@ export default class Experience {
 
         this.chef = new Animator(
             {
-                NEW_BOWL: [1, 2],
-                WHISK: [3, 4, 5],
-                END_BOWL: [6, 7],
+                NEW_BOWL: { frames: [1, 2], loop: false },
+                WHISK: { frames: [3, 4, 5], loop: true },
+                END_BOWL: { frames: [6, 7], loop: false },
             }, 
             'NEW_BOWL', 
             'chef'
         );
+
+        const nextStateElement = document.getElementById("nextState");
+        if (nextStateElement) {
+            nextStateElement.onclick = () => this.chef.nextState();
+        }
 
         this.tick();
     }
