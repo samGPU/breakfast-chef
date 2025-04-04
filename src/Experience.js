@@ -1,10 +1,22 @@
 import Canvas from "./Canvas";
 import Animator from "./Animator";
+import Input from "./Input";
 
 export default class Experience {
     constructor(canvas, ui) {
         this.canvas = new Canvas(canvas);
         this.ui = ui;
+
+        const RECIPES = {
+            SCRAMBLED:  { pattern: '<><><><>' },
+            OMLETTE:    { pattern: '>v<^>v<^'},
+            SOUFFLE:    { pattern: '<^>v<v>^' },
+            PANCAKES:   { pattern: '^>^>^>^>' },
+            CUSTARD:    { pattern: '^v^v^v^v' },
+            MERINGUE:   { pattern: '>><<>><<' },
+            MAYONAISE:  { pattern: '<<^^>>vv' }
+        }
+        this.input = new Input(RECIPES.SCRAMBLED.pattern);
 
         this.chef = new Animator(
             {
@@ -34,6 +46,9 @@ export default class Experience {
     
             if (deltaTime >= interval) {
                 lastTime = currentTime;
+
+                // Check user input
+                console.log(this.input.matches)
     
                 // Update and render
                 this.chef.update();
