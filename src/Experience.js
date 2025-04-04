@@ -37,7 +37,7 @@ export default class Experience {
     
                 // Update and render
                 this.chef.update();
-                this.canvas.drawImage(this.canvas.images[this.chef.getImageString()], 0, 0);
+                this.canvas.drawImage(this.canvas.images[this.chef.getImageString()], 'right', 0);
             }
     
             requestAnimationFrame(loop);

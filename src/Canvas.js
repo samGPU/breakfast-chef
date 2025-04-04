@@ -63,6 +63,11 @@ export default class Canvas {
             const aspectRatio = image.width / image.height;
             height = this.height; // Set height to canvas height
             width = height * aspectRatio; // Calculate width to maintain aspect ratio
+
+            if (x === 'right') {
+                // Place image all the way to the right
+                x = this.width - width; 
+            }
         }
     
         this.context.drawImage(image, x, y, width, height);
