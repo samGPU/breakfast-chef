@@ -33,6 +33,9 @@ export default class Experience {
             nextStateElement.onclick = () => this.chef.nextState();
         }
 
+        this.score = 0;
+        this.scoreElement = document.getElementById("score");
+
         this.tick();
     }
 
@@ -48,7 +51,12 @@ export default class Experience {
                 lastTime = currentTime;
 
                 // Check user input
-                console.log(this.input.matches)
+                if(this.input.matches) {
+                    this.score++;
+                    this.scoreElement.innerText = this.score;
+                    this.input.reset();
+                    this.chef.nextState();
+                }
     
                 // Update and render
                 this.chef.update();

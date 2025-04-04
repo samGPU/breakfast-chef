@@ -32,6 +32,11 @@ export default class Input {
         return this.pattern.includes(inputString);
     }
 
+    reset() {
+        this.matches = false;
+        this.inputString = [];
+    }
+
     setPattern(pattern) {
         this.pattern = pattern + pattern;
     }

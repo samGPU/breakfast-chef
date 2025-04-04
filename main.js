@@ -7,7 +7,7 @@ document.querySelector('#app').innerHTML = `
     <canvas class="game"></canvas>
     <div class="ui">
       <h1 id="nextState">Next State</h1>
-      <h1>Option 2</h1>
+      <h1 id="score">0</h1>
     </div>
   </div>
 `
