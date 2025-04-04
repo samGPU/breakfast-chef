@@ -1,12 +1,16 @@
 export default class Input {
-    constructor(startingPattern) {
+    constructor(startingPattern, chefAnimator) {
         this.pattern = startingPattern + startingPattern;
         this.inputString = [];
+        this.chefAnimator = chefAnimator;
 
         this.matches = false;
 
         window.addEventListener('keydown', (e) => {
             // console.log(e.key);
+
+            this.chefAnimator.addToFrameBuffer();
+
             if(e.key === 'ArrowLeft') {
                 this.inputString.push('<');
             } else if(e.key === 'ArrowUp') {

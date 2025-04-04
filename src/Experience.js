@@ -16,17 +16,18 @@ export default class Experience {
             MERINGUE:   { pattern: '>><<>><<' },
             MAYONAISE:  { pattern: '<<^^>>vv' }
         }
-        this.input = new Input(RECIPES.SCRAMBLED.pattern);
 
         this.chef = new Animator(
             {
-                NEW_BOWL: { frames: [1, 2], loop: false },
-                WHISK: { frames: [3, 4, 5], loop: true },
-                END_BOWL: { frames: [6, 7], loop: false },
+                NEW_BOWL: { frames: [1, 2], loop: false, auto: true },
+                WHISK: { frames: [3, 4, 5], loop: true, auto: false },
+                END_BOWL: { frames: [6, 7], loop: false, auto: true },
             }, 
             'NEW_BOWL', 
             'chef'
         );
+
+        this.input = new Input(RECIPES.SCRAMBLED.pattern, this.chef);
 
         const nextStateElement = document.getElementById("nextState");
         if (nextStateElement) {

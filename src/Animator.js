@@ -8,10 +8,17 @@ export default class Animator {
         this.currentState = startingState;
         this.stateIndex = 0;
         this.state = this.STATES[this.currentState].frames[this.stateIndex];
+
+        // Buffer of frames to draw, accumulated by player activity
+        this.frameBuffer = 0;
     }
 
     getImageString() {
         return `${this.imageString}_${this.state}`;
+    }
+
+    addToFrameBuffer() {
+        this.frameBuffer++;
     }
 
     update() {
@@ -19,7 +26,12 @@ export default class Animator {
         const stateImages = currentStateObj.frames;
 
         // Update the frame index
-        this.stateIndex++;
+        if(currentStateObj.auto) {
+            this.stateIndex++;
+        } else if (this.frameBuffer > 0) {
+            this.stateIndex++;
+            this.frameBuffer--;
+        }
 
         if (this.stateIndex >= stateImages.length) {
             // If loop is false, move to the next state
