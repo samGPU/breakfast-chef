@@ -16,6 +16,7 @@ export default class Experience {
             MERINGUE:   { pattern: '>><<>><<' },
             MAYONAISE:  { pattern: '<<^^>>vv' }
         }
+        this.showRecipes = false;
 
         this.chef = new Animator(
             {
@@ -27,7 +28,7 @@ export default class Experience {
             'chef'
         );
 
-        this.input = new Input(RECIPES.SCRAMBLED.pattern, this.chef);
+        this.input = new Input(this, RECIPES.SCRAMBLED.pattern);
 
         this.score = 0;
         this.scoreElement = document.getElementById("score");
@@ -46,17 +47,21 @@ export default class Experience {
             if (deltaTime >= interval) {
                 lastTime = currentTime;
 
-                // Check user input
-                if(this.input.matches) {
-                    this.score++;
-                    this.scoreElement.innerText = this.score;
-                    this.input.reset();
-                    this.chef.nextState();
+                if(this.showRecipes) {
+
+                } else {
+                    // Check user input
+                    if(this.input.matches) {
+                        this.score++;
+                        this.scoreElement.innerText = this.score;
+                        this.input.reset();
+                        this.chef.nextState();
+                    }
+        
+                    // Update and render
+                    this.chef.update();
+                    this.canvas.drawImage(this.canvas.images[this.chef.getImageString()], 'right', 0);
                 }
-    
-                // Update and render
-                this.chef.update();
-                this.canvas.drawImage(this.canvas.images[this.chef.getImageString()], 'right', 0);
             }
     
             requestAnimationFrame(loop);
