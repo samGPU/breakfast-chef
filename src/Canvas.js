@@ -31,8 +31,8 @@ export default class Canvas {
         const { innerWidth, innerHeight } = window;
     
         // Calculate scale based on the aspect ratio
-        const aspectRatio = this.width / this.height;
-        let newWidth = innerWidth * 0.9; // 90% of window width
+        const aspectRatio = 1;
+        let newWidth = innerWidth; // 90% of window width
         let newHeight = newWidth / aspectRatio;
     
         // Ensure it fits within the window height
@@ -50,6 +50,11 @@ export default class Canvas {
         this.height = newHeight;
     
         console.log('Resized canvas to:', newWidth, newHeight);
+
+        // Resize the game container to the correct width to move the UI elements
+        const container = document.getElementById("ui");
+        console.log(container)
+        container.style.width = `${this.width * 0.8}px`;
     }
 
     drawImage(image, x, y, width = 0, height = 0) {

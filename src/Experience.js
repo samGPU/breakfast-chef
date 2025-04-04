@@ -29,11 +29,6 @@ export default class Experience {
 
         this.input = new Input(RECIPES.SCRAMBLED.pattern, this.chef);
 
-        const nextStateElement = document.getElementById("nextState");
-        if (nextStateElement) {
-            nextStateElement.onclick = () => this.chef.nextState();
-        }
-
         this.score = 0;
         this.scoreElement = document.getElementById("score");
 
