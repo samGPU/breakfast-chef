@@ -33,6 +33,10 @@ export default class Experience {
         this.score = 0;
         this.scoreElement = document.getElementById("score");
 
+        // TODO: Capture the Recipe Book Button and add onclick
+        //      -- Onclick flip the icon to an X and back
+        //      -- Flip the showRecipes value
+
         this.tick();
     }
 
@@ -48,7 +52,9 @@ export default class Experience {
                 lastTime = currentTime;
 
                 if(this.showRecipes) {
-
+                    // TODO: When this flag is shown draw the recipe book on screen
+                    //          - Create the recipe book image, each recipe with the combination
+                    //          - Draw it to the screen
                 } else {
                     // Check user input
                     if(this.input.matches) {
@@ -61,6 +67,10 @@ export default class Experience {
                     // Update and render
                     this.chef.update();
                     this.canvas.drawImage(this.canvas.images[this.chef.getImageString()], 'right', 0);
+                    // TODO: Draw the current recipe on screen
+                    //          - Create the images
+                    //          - Add them to sources and make sure that they load correctly
+                    //          - Draw the correct one to the screen
                 }
             }
     
